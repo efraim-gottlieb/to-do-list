@@ -1,2 +1,2 @@
-let DB = []
+const DB = []
 export default DB

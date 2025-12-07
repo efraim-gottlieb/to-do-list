@@ -1,4 +1,5 @@
 import { nanoid } from "nanoid";
+import arrayTools from "./arrayTools.js";
 import DB from "../data.js";
 
 const createToDo = (name, details, status = "pending") => {
@@ -12,15 +13,15 @@ const createToDo = (name, details, status = "pending") => {
 };
 
 const addToDo = (toDo) => {
-  DB.push(toDo)
-}
+  DB.push(toDo);
+};
 
-const displayToDoList = () => {
+const displayToDoList = (sortBy = "date", ascending=true) => {
+  let list = arrayTools.sortBy(DB, sortBy, ascending);
   DB.forEach((toDo) => {
     console.log(toDo);
   });
+  return list;
 };
 
-let a = createToDo('fix door', 'buy new door and install them')
-addToDo(a)
-displayToDoList()
+export default { createToDo, addToDo, displayToDoList };
